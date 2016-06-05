@@ -1,0 +1,63 @@
+plugins {
+    id "com.jfrog.bintray" version "1.6"
+}
+
+apply plugin:"groovy"
+apply plugin:"maven-publish"
+
+repositories {
+	maven {
+		url "https://repo.grails.org/grails/core"
+	}
+}
+
+group 'org.groovy.lang.groovydoc'
+version = "1.0.0-SNAPSHOT"
+
+dependencies {
+	compile gradleApi()
+	compile "org.codehaus.groovy:groovy-groovydoc:2.4.6"
+    compile "commons-cli:commons-cli:1.2"
+}
+
+task sourceJar(type: Jar) {
+	from sourceSets.main.allJava
+}
+
+task javadocJar(type:Jar) {
+	classifier = 'javadoc'
+	from groovydoc.outputs
+}
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			from components.java
+
+			artifact sourceJar {
+				classifier "sources"
+			}
+		}
+	}
+}
+
+bintray {
+    user = System.getenv("BINTRAY_USER") ?: project.hasProperty("bintrayUser") ? project.bintrayUser : ''
+    key = System.getenv("BINTRAY_KEY") ?: project.hasProperty("bintrayKey") ? project.bintrayKey : ''
+    publications = ['maven']
+    publish = true
+    pkg {
+        repo = "grails-core"
+        userOrg = project.hasProperty('userOrg') ? project.userOrg : 'grails'
+        name = "groovydoc-gradle-plugin"
+        desc = "Alternative Groovydoc Plugin for Gradle that Forks the JVM"
+        websiteUrl = "https://github.com/graemerocher/groovydoc-gradle-plugin"
+        issueTrackerUrl = "https://github.com/graemerocher/groovydoc-gradle-plugin/issues"
+        vcsUrl = "git@github.com:graemerocher/groovydoc-gradle-plugin.git"
+        licenses = ['Apache-2.0']
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+        }
+    }
+}
