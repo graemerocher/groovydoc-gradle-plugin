@@ -126,6 +126,9 @@ class GroovydocTask extends JavaExec {
             classpath(groovyClasspath)
         }
 
+        if( !classpath.files.find { File f -> f.name.contains('groovy-all')} ) {
+            classpath(findJarFile(Main))
+        }
         args(
             "-d", destinationDir.canonicalPath)
 

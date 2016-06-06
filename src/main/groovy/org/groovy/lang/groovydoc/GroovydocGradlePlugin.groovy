@@ -23,7 +23,7 @@ class GroovydocGradlePlugin implements Plugin<Project> {
         if(mainSourceSet != null) {
             GroovydocTask groovydocTask = (GroovydocTask)project.tasks.create(type:GroovydocTask, name:"groovydoc", overwrite:true)
 
-            groovydocTask.source = project.files(mainSourceSet.allSource.srcDirs).singleFile
+            groovydocTask.source = project.files(mainSourceSet.allSource.srcDirs)
             groovydocTask.destinationDir = new File(project.buildDir, "docs/groovydoc")
             groovydocTask.classpath = project.configurations.getByName("compile")
         }
