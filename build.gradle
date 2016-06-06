@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.gradle.publish:plugin-publish-plugin:0.9.4"
+    }
+}
+
 plugins {
     id "com.jfrog.bintray" version "1.6"
 }
@@ -58,6 +69,20 @@ bintray {
         publicDownloadNumbers = true
         version {
             name = project.version
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/graemerocher/groovydoc-gradle-plugin'
+    vcsUrl = 'git@github.com:graemerocher/groovydoc-gradle-plugin.git'
+    description = 'Alternative Groovydoc Plugin for Gradle that Forks the JVM'
+    tags = ['groovydoc', 'groovylang']
+
+    plugins {
+        groovydocPlugin {
+            id = 'io.github.groovylang.groovydoc'
+            displayName = 'Groovydoc Plugin'
         }
     }
 }
