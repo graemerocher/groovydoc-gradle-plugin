@@ -40,3 +40,16 @@ If you wish to alter the memory requirements of the task you can do so using the
 ```groovy
 groovydoc.jvmArgs "-Xmx512m"
 ```
+
+The `GroovydocTask` class extends Gradle's [JavaExec](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.JavaExec.html) class so only properties of that class including JVM arguments, classpath confifuration etc. can be configured as necessary.
+
+Note that in order for the `GroovydocTask` to function Groovy itself needs to be on the classpath. If `groovy-all` is found on the classpath then the `GroovydocTool` from the `groovy-all` JAR is used, otherwise the `GroovydocTool` that this plugin depends on is used. If you only have the `groovy` on your classpath and want to use a different version of the `GroovydocTool` then you can configure an alternative version as follows:
+
+```groovy
+configurations { documentation }
+dependencies {
+   documentation "org.codehaus.groovy:groovy-groovydoc:2.4.6"
+}
+
+groovydoc.classpath += configurations.documentation
+```
