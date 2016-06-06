@@ -15,6 +15,7 @@ plugins {
 
 apply plugin:"groovy"
 apply plugin:"maven-publish"
+apply plugin: "com.gradle.plugin-publish"
 
 repositories {
 	maven {
