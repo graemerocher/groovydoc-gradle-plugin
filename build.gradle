@@ -24,7 +24,7 @@ repositories {
 }
 
 group 'io.github.groovylang.groovydoc'
-version = "1.0.1-SNAPSHOT"
+version = "1.0.1"
 
 dependencies {
 	compile gradleApi()
@@ -85,5 +85,11 @@ pluginBundle {
             id = 'io.github.groovylang.groovydoc'
             displayName = 'Groovydoc Plugin'
         }
+    }
+
+    mavenCoordinates {
+        groupId = group.toString()
+        artifactId = "groovydoc-gradle-plugin"
+        version = version.toString()
     }
 }
