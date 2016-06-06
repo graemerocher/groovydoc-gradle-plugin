@@ -10,13 +10,18 @@ Generally this plugin is a drop in replacement for the regular Groovydoc generat
 To use the plugin add the following to your buildscript classpath:
 
 ```groovy
-classpath 'io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.0-SNAPSHOT'
+repositories {
+    maven { url "https://repo.grails.org/grails/core" }
+}
+dependencies {
+    classpath 'io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.0'
+}
 ```
 
 Then apply the plugin:
 
 ```groovy
-apply plugin:"org.groovy.lang.groovydoc"
+apply plugin:"io.github.groovylang.groovydoc"
 ```
 
 You can also manually configure Groovydoc tasks using the `org.groovy.lang.groovydoc.tasks.GroovydocTask` class:
