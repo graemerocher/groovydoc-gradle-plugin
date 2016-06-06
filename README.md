@@ -10,7 +10,7 @@ Generally this plugin is a drop in replacement for the regular Groovydoc generat
 To use the plugin add the following to your buildscript classpath:
 
 ```groovy
-classpath 'org.groovy.lang.groovydoc:groovydoc-gradle-plugin:1.0.0-SNAPSHOT'
+classpath 'io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.0-SNAPSHOT'
 ```
 
 Then apply the plugin:

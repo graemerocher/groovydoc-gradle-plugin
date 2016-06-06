@@ -63,6 +63,11 @@ class GroovydocTask extends JavaExec {
 
     @Input
     @Optional
+    Boolean nomainforscripts
+
+
+    @Input
+    @Optional
     Boolean noscripts
 
     @Input
@@ -71,7 +76,23 @@ class GroovydocTask extends JavaExec {
 
     @Input
     @Optional
+    Boolean debugOutput
+
+    @Input
+    @Optional
+    Boolean quiet
+
+    @Input
+    @Optional
+    File stylesheetFile
+
+    @Input
+    @Optional
     FileCollection groovyClasspath
+
+    @Input
+    @Optional
+    String charset
 
     protected final List<Object> allSource = new ArrayList();
 
@@ -123,17 +144,33 @@ class GroovydocTask extends JavaExec {
         if(overview != null) {
             args("-overview", overview)
         }
+        if(quiet) {
+            args("-quiet")
+        }
         if(notimestamp) {
             args("-notimestamp")
         }
         if(noversionstamp) {
             args("-noversionstamp")
         }
+        if(nomainforscripts) {
+            args("-nomainforscripts")
+        }
         if(noscripts) {
             args("-noscripts")
         }
+        if(debugOutput) {
+            args("-debug")
+        }
         if(verbose) {
             args("-verbose")
+        }
+        if(charset) {
+            args("-charset", charset)
+        }
+
+        if(stylesheetFile != null) {
+            args("-stylesheetfile", stylesheetFile.canonicalPath)
         }
 
         final File tmpDir = new File(project.getBuildDir(), "tmp/groovydoc")
