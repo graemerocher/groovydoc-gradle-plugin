@@ -35,7 +35,13 @@ task groovydoc(type:GroovydocTask) {
 }
 ```
 
-If you wish to alter the memory requirements of the task you can do so using the `jvmArgs`:
+If you wish to alter the memory requirements of the task you can do so using the `maxHeapSize`:
+
+```groovy
+groovydoc.maxHeapSize = "512m"
+```
+
+Or by passing whatever JVM arguments you want using `jvmArgs`:
 
 ```groovy
 groovydoc.jvmArgs "-Xmx512m"
