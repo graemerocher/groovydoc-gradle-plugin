@@ -14,7 +14,7 @@ repositories {
     maven { url "https://repo.grails.org/grails/core" }
 }
 dependencies {
-    classpath 'io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.0'
+    classpath 'io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.1'
 }
 ```
 
